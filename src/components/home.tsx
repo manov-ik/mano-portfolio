@@ -1,4 +1,5 @@
 import About from "./about";
+import Connect from "./connect";
 import HeroSection from "./hero";
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <>
       <HeroSection />
       <About />
+      <Connect />
     </>
   );
 }

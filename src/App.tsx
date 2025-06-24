@@ -4,10 +4,12 @@ import Home from "./components/home";
 import Skill from "./components/skill";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fotter from "./components/fotter";
+import CustomCursor from "./components/CustomCursor";
 
 function App() {
   return (
-    <div className="bg-[#1A191D] bg-grid min-h-screen ">
+    <div className="bg-[#1A191D] bg-grid min-h-screen cursor-none">
+      <CustomCursor />
       <NavBar />
       <BrowserRouter>
         <Routes>

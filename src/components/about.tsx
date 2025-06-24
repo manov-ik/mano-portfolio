@@ -3,10 +3,10 @@ import illustation from "../assets/illustation-face.png";
 function About() {
   return (
     <div className="w-full h-screen m-auto flex flex-col items-center bg-[#232328] font-mono  ">
-      <div className="w-[80%] m-auto flex flex-row items-center">
+      <div className="w-[80%]  m-auto flex flex-row items-center">
         <h1 className="text-4xl font-bold text-white m-auto mr-0 ">About me</h1>
       </div>
-      <div className=" m-auto mt-0 flex flex-row w-[80%]">
+      <div className=" m-auto  -mt-20 flex flex-row w-[80%] ">
         <div className="bg-white w-96 m-auto">
           <img src={illustation} alt="img" className="w-96" />
         </div>
