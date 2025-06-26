@@ -7,7 +7,9 @@ function Home() {
     <>
       <HeroSection />
       <About />
-      <Connect />
+      <section id="connect">
+        <Connect />
+      </section>
     </>
   );
 }

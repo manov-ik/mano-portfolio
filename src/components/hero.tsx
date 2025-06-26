@@ -1,23 +1,29 @@
 import { Typewriter } from "react-simple-typewriter";
-import mano from "../assets/mano.png";
+import manoS from "../assets/mano-square-c.png";
 
 function HeroSection() {
   return (
     <>
       <div
-        className="w-[80%] mt-[5%] m-auto flex flex-row items-center bg-[url('src/assets/Perspective Grid.svg')] 
-       max-sm:w-[90%] max-sm:flex-col-reverse "
+        className="flex flex-col-reverse items-center justify-center lg:h-screen
+      xl:flex-row xl:w-[80%] xl:m-auto xl:pt-20"
       >
-        <section className="flex items-center text-white px-4 font-mono font-bold">
-          <div className="text-left space-y-6 max-sm:text-center">
-            <p className="text-4xl -mb-2 max-sm:text-2xl">Hello! This is</p>
-            <h1 className="relative inline-block text-6xl ">
-              <span className="relative z-10 text-white text-[160px] max-sm:text-[120px] ">
+        <section
+          className="flex items-center text-white px-4 font-mono font-bold
+         "
+        >
+          <div
+            className="space-y-6 text-center
+          xl:text-left xl:w-2/3"
+          >
+            <p className="-mb-2 text-xl mt-8 lg:text-4xl ">Hello! This is</p>
+            <h1 className="relative inline-block text-4xl">
+              <span className="relative z-10 text-white text-[100px] lg:text-[180px] ">
                 Mano
               </span>
-              <span className="absolute bottom-3 left-0 h-6 w-full bg-[#BB77FF] z-0"></span>
+              <span className="absolute bottom-3 xl:bottom-5 left-0 h-6 w-full bg-[#BB77FF] z-0"></span>
             </h1>
-            <p className="text-2xl">
+            <p className="text-xl lg:text-4xl ">
               <Typewriter
                 words={[
                   "ML Engineer",
@@ -33,13 +39,18 @@ function HeroSection() {
                 delaySpeed={1000}
               />
             </p>
-            <p className="text-3xl font-semibold text-white w-2xl max-sm:w-md max-sm:text-xl">
+            <p className=" font-semibold text-white w-full mb-5 lg:text-2xl">
               Crafting Intelligent Systems & Scalable Software Solutions.
             </p>
           </div>
         </section>
-        <div className="flex items-center m-auto mr-0 max-sm:m-auto bg-amber-400">
-          <img src={mano} alt="img" className="w-96 mr-10 max-sm:w-45 " />
+        <div className="flex justify-center items-center ">
+          {/* <img src={manoF} alt="img" className="w-96 lg:block hidden " /> */}
+          <img
+            src={manoS}
+            alt="img"
+            className="w-60 mt-24 xl:mt-0 bg-[#BB77FF] p-2 rounded-full xl:w-128 "
+          />
         </div>
       </div>
     </>

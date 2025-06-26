@@ -39,7 +39,7 @@ export default function CustomCursor() {
 
       {/* Outer ring */}
       <div
-        className={`fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] mix-blend-difference transition-transform duration-200 ease-out ${
+        className={`fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] mix-blend-difference transition-transform duration-200 ease-out  ${
           visible ? "opacity-100" : "opacity-0"
         }`}
         style={{

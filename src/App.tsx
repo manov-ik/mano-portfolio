@@ -5,6 +5,8 @@ import Skill from "./components/skill";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fotter from "./components/fotter";
 import CustomCursor from "./components/CustomCursor";
+import Projects from "./components/Projects";
+import More from "./components/More";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/skill" element={<Skill />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/more" element={<More />} />
         </Routes>
       </BrowserRouter>
       <Fotter />
