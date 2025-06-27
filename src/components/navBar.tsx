@@ -68,7 +68,7 @@ function NavBar() {
           Contact
         </NavLink>
         <NavLink href="/more" onClick={closeMenu}>
-          About
+          More
         </NavLink>
         <motion.a
           href={ManoResume}

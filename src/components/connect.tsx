@@ -52,17 +52,19 @@ const SocialIcon = ({
 
 function Connect() {
   return (
-    <div className="font-mono mt-12 flex m-auto text-4xl font-bold text-white flex-col xl:flex-row xl:w-[80%]">
-      <div className="text-7xl xl:text-9xl xl:w-1/2 justify-center flex items-center text-center xl:text-left">
-        <p className="m-auto mb-4">Let`s Connect</p>
-      </div>
+    <section id="connect">
+      <div className="font-mono mt-12 flex m-auto text-4xl font-bold text-white flex-col xl:flex-row xl:w-[80%]">
+        <div className="text-7xl xl:text-9xl xl:w-1/2 justify-center flex items-center text-center xl:text-left">
+          <p className="m-auto mb-4">Let`s Connect</p>
+        </div>
 
-      <div className="grid grid-cols-4 gap-4 p-4 xl:w-1/2">
-        {socialLinks.map(({ href, img, alt }) => (
-          <SocialIcon key={alt} href={href} img={img} alt={alt} />
-        ))}
+        <div className="grid grid-cols-4 gap-4 p-4 xl:w-1/2">
+          {socialLinks.map(({ href, img, alt }) => (
+            <SocialIcon key={alt} href={href} img={img} alt={alt} />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -1,5 +1,3 @@
-import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import SkillComp from "./skillComp";
 
 // export default function SkillsGraph() {

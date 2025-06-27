@@ -59,7 +59,7 @@ const More = () => {
       title: "Vice President",
       company: "DEVS REC Club (Tech Club)",
       description:
-        "Led tech initiatives in one of REC’s largest tech clubs, impacting 2000+ members through projects, innovation, and partnerships.",
+        "Lead tech initiatives in one of REC’s largest tech clubs, impacting 2000+ members through projects, innovation, and partnerships.",
     },
   ];
 
