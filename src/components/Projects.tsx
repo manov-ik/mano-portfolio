@@ -17,7 +17,7 @@ const WorksCard = ({ imgSrc, content, link }: any) => {
   return (
     <div className="w-1/2 md:w-1/3 xl:w-1/4 p-2">
       <div className="  rounded-2xl p-2 font-mono text-white bg-[#2323288d] border-1 border-[#484851] hover:bg-[#232328] transition-all duration-300 hover:backdrop-blur-xl xl:min-h-54 h-32 md:h-48">
-        <a href={link} target="blank">
+        <a href={link} target="_blank">
           {imgSrc ? (
             <img
               src={imgSrc}
@@ -76,7 +76,7 @@ function Projects() {
     },
     {
       imgSrc: tic,
-      link: "https://www.theinternetcompany.one/",
+      link: "https://www.theinternetcompany.one/design.html",
       content: "tic",
     },
     {

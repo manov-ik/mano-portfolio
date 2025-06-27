@@ -44,7 +44,7 @@ const SocialIcon = ({
   alt: string;
 }) => (
   <div className="m-auto rounded-2xl bg-[#2323288d] border-1 border-[#484851] hover:bg-[#232328] backdrop-blur-xl">
-    <a target="blank" href={href} aria-label={alt}>
+    <a target="_blank" href={href} aria-label={alt}>
       <img src={img} alt={alt} className="p-4" />
     </a>
   </div>

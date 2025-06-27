@@ -131,7 +131,7 @@ function NavBar() {
               onClick={closeMenu}
               variants={linkVariants}
             >
-              About
+              More
             </MobileLink>
             <motion.a
               href={ManoResume}
