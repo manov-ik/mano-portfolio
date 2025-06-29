@@ -27,7 +27,7 @@ export default function CustomCursor() {
     <>
       {/* Inner filled dot */}
       <div
-        className={`fixed w-5 h-5 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-75 ease-linear ${
+        className={`max-sm:hidden fixed w-5 h-5 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference transition-transform duration-75 ease-linear ${
           visible ? "opacity-100" : "opacity-0"
         }`}
         style={{
@@ -39,7 +39,7 @@ export default function CustomCursor() {
 
       {/* Outer ring */}
       <div
-        className={`fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] mix-blend-difference transition-transform duration-200 ease-out  ${
+        className={`max-sm:hidden fixed w-10 h-10 border border-white rounded-full pointer-events-none z-[9998] mix-blend-difference transition-transform duration-200 ease-out  ${
           visible ? "opacity-100" : "opacity-0"
         }`}
         style={{
