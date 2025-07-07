@@ -59,7 +59,7 @@ const More = () => {
       title: "Vice President",
       company: "DEVS REC Club (Tech Club)",
       description:
-        "Lead tech initiatives in one of REC’s largest tech clubs, impacting 2000+ members through projects, innovation, and partnerships.",
+        "Lad tech initiatives in one of REC’s largest tech clubs, impacting 2000+ members through projects, innovation, and partnerships.",
     },
   ];
 
@@ -69,7 +69,9 @@ const More = () => {
         <div className="w-full flex flex-col lg:flex-row gap-5">
           {/* Experience Section */}
           <div className="w-full flex flex-col gap-5">
-            <p className="text-2xl font-bold text-white p-2">My Experience</p>
+            <p className="text-2xl font-bold p-2 text-[#1A191D] bg-white transition-all duration-300 hover:bg-[#BB77FF] w-fit">
+              My Experience
+            </p>
             {experienceData.map((item, index) => (
               <Card
                 key={index}
@@ -83,7 +85,9 @@ const More = () => {
 
           {/* Education Section */}
           <div className="w-full flex flex-col gap-5">
-            <p className="text-2xl font-bold text-white p-2">My Education</p>
+            <p className="text-2xl font-bold p-2 text-[#1A191D] bg-white transition-all duration-300 hover:bg-[#BB77FF] w-fit">
+              My Education
+            </p>
             {educationData.map((item, index) => (
               <Card
                 key={index}
@@ -96,7 +100,9 @@ const More = () => {
 
           {/* Achievements Section */}
           <div className="w-full flex flex-col gap-5">
-            <p className="text-2xl font-bold text-white p-2">Achievements</p>
+            <p className="text-2xl font-bold p-2 text-[#1A191D] bg-white transition-all duration-300 hover:bg-[#BB77FF] w-fit">
+              Achievements
+            </p>
             {achievementsData.map((item, index) => (
               <Card
                 key={index}
