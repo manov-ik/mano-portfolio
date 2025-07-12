@@ -37,7 +37,7 @@ function Projects() {
     {
       title: "Spotify Lyric Generator",
       description:
-        "Developed a computer vision system to identify weld and paint defects, classify surface scratches, and provide real-time prediction feedback.",
+        "It is a web scraping-based application that retrieves lyrics from online sources for the track currently playing in the user's Spotify account. It supports both Tamil and English songs, providing real-time lyrics fetched directly from the web.",
       techStack: "Python, Web Scaping, FastApi, Html, Css, Javascript",
       githubLink: "https://github.com/manov-ik/spotify-lyric-generator",
       projectLink: "https://spotify-lyric-generator.vercel.app/",
@@ -126,7 +126,7 @@ function Projects() {
       </div>
       <div className="my-4">
         <p className="font-mono my-2 xl:mt-2 mt-4 w-fit m-auto text-3xl font-bold text-[#1A191D] z-20 bg-white p-2 transition-all duration-300 hover:bg-[#BB77FF]">
-          Works
+          Design Works
         </p>
         <p className="text-center w-full text-white font-bold font-mono text-xl"></p>
         <div className="flex flex-wrap px-2 justify-center">

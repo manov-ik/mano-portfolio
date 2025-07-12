@@ -33,7 +33,7 @@ function NavBar() {
 
   return (
     <motion.div
-      className="w-full h-16 flex items-center justify-between px-6 font-mono text-white z-50 fixed top-0 left-0 backdrop-blur-md border-b border-[#484851]"
+      className="w-full h-16 flex items-center justify-between px-6 font-mono text-white z-50 fixed top-0 left-0 backdrop-blur-md border-b border-[#484851] max-sm:px-10"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}

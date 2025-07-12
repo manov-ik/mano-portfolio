@@ -33,14 +33,14 @@ function HeroSection() {
                 ]}
                 loop={true}
                 cursor
-                cursorStyle="|"
+                cursorStyle="_"
                 typeSpeed={100}
                 deleteSpeed={50}
                 delaySpeed={1000}
               />
             </p>
             <p className=" font-semibold text-white w-full mb-5 lg:text-2xl">
-              Crafting Intelligent Systems & Scalable Software Solutions.
+              Crafting Intelligent Systems & Scalable Solutions.
             </p>
           </div>
         </section>

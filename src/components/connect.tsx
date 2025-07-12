@@ -30,7 +30,11 @@ const socialLinks = [
     img: RedditSVG,
     alt: "Reddit",
   },
-  { href: "tel:+91 93610 26919", img: WhatsAppSVG, alt: "WhatsApp" },
+  {
+    href: "https://wa.me/919361026919",
+    img: WhatsAppSVG,
+    alt: "Chat on WhatsApp",
+  },
   { href: "https://www.kaggle.com/manovik", img: KaggleSVG, alt: "Kaggle" },
 ];
 
