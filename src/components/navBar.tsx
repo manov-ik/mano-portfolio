@@ -130,6 +130,13 @@ function NavBar() {
               Contact
             </MobileLink>
             <MobileLink
+              href="/Writes"
+              onClick={closeMenu}
+              variants={linkVariants}
+            >
+              Writes
+            </MobileLink>
+            <MobileLink
               href="/more"
               onClick={closeMenu}
               variants={linkVariants}
