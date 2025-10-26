@@ -23,7 +23,7 @@ const Card = ({ dateRange, title, company, description, subtitle }: any) => (
 const More = () => {
   const experienceData = [
     {
-      dateRange: "Mar 2025 – Present",
+      dateRange: "Mar 2025 – Jul 2025",
       title: "3D Artist",
       company: "TIC Global Services",
       description:
