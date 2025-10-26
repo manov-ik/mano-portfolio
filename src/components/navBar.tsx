@@ -67,6 +67,9 @@ function NavBar() {
         <NavLink href="/#connect" onClick={closeMenu}>
           Contact
         </NavLink>
+        <NavLink href="/writes" onClick={closeMenu}>
+          Writes
+        </NavLink>
         <NavLink href="/more" onClick={closeMenu}>
           More
         </NavLink>

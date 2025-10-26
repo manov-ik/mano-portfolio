@@ -7,6 +7,8 @@ import Fotter from "./components/fotter";
 import CustomCursor from "./components/CustomCursor";
 import Projects from "./components/Projects";
 import More from "./components/More";
+import Writes from "./components/Writes";
+import WriteDetailPage from "./components/WriteDetailPage";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/skill" element={<Skill />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/writes" element={<Writes />} />
+          <Route path="/writes/:id" element={<WriteDetailPage />} />
           <Route path="/more" element={<More />} />
         </Routes>
       </BrowserRouter>
