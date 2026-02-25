@@ -1,7 +1,7 @@
 import NavBar from "./components/navBar";
 import "./App.css";
 import Home from "./components/home";
-import Skill from "./components/skill";
+// import Skill from "./components/skill";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Fotter from "./components/fotter";
 import CustomCursor from "./components/CustomCursor";
@@ -18,7 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/skill" element={<Skill />} />
+          {/* <Route path="/skill" element={<Skill />} /> */}
           <Route path="/projects" element={<Projects />} />
           <Route path="/writes" element={<Writes />} />
           <Route path="/writes/:id" element={<WriteDetailPage />} />

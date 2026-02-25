@@ -28,8 +28,8 @@ function HeroSection() {
                 words={[
                   "ML Engineer",
                   "Software Developer",
-                  "3D Artist",
                   "AI Enthusiast",
+                  "Graphic Desginer"
                 ]}
                 loop={true}
                 cursor

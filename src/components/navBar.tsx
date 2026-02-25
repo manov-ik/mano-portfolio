@@ -58,9 +58,9 @@ function NavBar() {
         <NavLink href="/" onClick={closeMenu}>
           Home
         </NavLink>
-        <NavLink href="/skill" onClick={closeMenu}>
+        {/* <NavLink href="/skill" onClick={closeMenu}>
           Skill
-        </NavLink>
+        </NavLink> */}
         <NavLink href="/projects" onClick={closeMenu}>
           Project
         </NavLink>
@@ -108,13 +108,13 @@ function NavBar() {
             <MobileLink href="/" onClick={closeMenu} variants={linkVariants}>
               Home
             </MobileLink>
-            <MobileLink
+            {/* <MobileLink
               href="/skill"
               onClick={closeMenu}
               variants={linkVariants}
             >
               Skill
-            </MobileLink>
+            </MobileLink> */}
             <MobileLink
               href="/projects"
               onClick={closeMenu}

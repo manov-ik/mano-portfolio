@@ -190,7 +190,6 @@ function Skill() {
     <div className="w-full min-h-screen text-white font-mono overflow-hidden ">
       <h1 className="mt-20 w-fit mx-auto mb-4 text-3xl font-bold text-[#1A191D] z-20 bg-white p-2 transition-all duration-300 hover:bg-[#BB77FF] relative group">
         Skills
-        <span className="absolute bottom-0 -z-10 left-0 h-1 w-0 bg-[#BB77FF] transition-all duration-300 group-hover:w-full"></span>
       </h1>
       <div className="w-[90%] sm:w-[80%] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-5">
         {skillData.map((group, index) => (
