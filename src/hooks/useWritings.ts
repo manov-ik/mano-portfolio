@@ -1,106 +1,94 @@
 import { useState, useEffect, useCallback } from 'react';
 import { writingsApi } from '../services/writingsApi';
-import type { Writing, WritingsResponse } from '../services/writingsApi';
+import type { Writing } from '../services/writingsApi';
 
-interface UseWritingsOptions {
-  page?: number;
-  limit?: number;
-  category?: string;
-  published?: boolean;
-  sortBy?: 'createdAt' | 'updatedAt' | 'order' | 'title';
-  sortOrder?: 'asc' | 'desc';
-  autoFetch?: boolean;
+// ─── Cache config ───────────────────────────────────────────────────────────
+const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+
+interface CacheEntry<T> {
+  data: T;
+  timestamp: number;
 }
+
+function readCache<T>(key: string): T | null {
+  try {
+    const raw = sessionStorage.getItem(key);
+    if (!raw) return null;
+    const entry: CacheEntry<T> = JSON.parse(raw);
+    if (Date.now() - entry.timestamp > CACHE_TTL_MS) {
+      sessionStorage.removeItem(key);
+      return null;
+    }
+    return entry.data;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache<T>(key: string, data: T): void {
+  try {
+    const entry: CacheEntry<T> = { data, timestamp: Date.now() };
+    sessionStorage.setItem(key, JSON.stringify(entry));
+  } catch {
+    // sessionStorage full or unavailable — silent fail
+  }
+}
+
+// ─── useWritings (list) ─────────────────────────────────────────────────────
 
 interface UseWritingsReturn {
   writings: Writing[];
   loading: boolean;
   error: string | null;
-  total: number;
-  page: number;
-  limit: number;
   refetch: () => Promise<void>;
-  loadMore: () => Promise<void>;
-  hasMore: boolean;
 }
 
-export const useWritings = (options: UseWritingsOptions = {}): UseWritingsReturn => {
-  const {
-    page = 1,
-    limit = 10,
-    category,
-    published = true,
-    sortBy = 'order',
-    sortOrder = 'asc',
-    autoFetch = true,
-  } = options;
+const WRITINGS_CACHE_KEY = 'writings_cache';
 
-  const [writings, setWritings] = useState<Writing[]>([]);
-  const [loading, setLoading] = useState(false);
+export const useWritings = (): UseWritingsReturn => {
+  // Seed state from cache immediately — no spinner on cache hit
+  const [writings, setWritings] = useState<Writing[]>(
+    () => readCache<Writing[]>(WRITINGS_CACHE_KEY) ?? []
+  );
+  const [loading, setLoading] = useState<boolean>(
+    () => readCache<Writing[]>(WRITINGS_CACHE_KEY) === null
+  );
   const [error, setError] = useState<string | null>(null);
-  const [total, setTotal] = useState(0);
-  const [currentPage, setCurrentPage] = useState(page);
-  const [hasMore, setHasMore] = useState(true);
 
-  const fetchWritings = useCallback(async (pageNum: number = 1, append: boolean = false) => {
+  const fetchWritings = useCallback(async (force = false) => {
+    if (!force) {
+      const cached = readCache<Writing[]>(WRITINGS_CACHE_KEY);
+      if (cached) {
+        setWritings(cached);
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
       setLoading(true);
       setError(null);
-
-      const response: WritingsResponse = await writingsApi.getWritings({
-        page: pageNum,
-        limit,
-        category,
-        published,
-        sortBy,
-        sortOrder,
-      });
-
-      if (append) {
-        setWritings(prev => [...prev, ...response.writings]);
-      } else {
-        setWritings(response.writings);
-      }
-
-      setTotal(response.total);
-      setCurrentPage(response.page);
-      setHasMore(response.writings.length === limit && response.page * limit < response.total);
+      const response = await writingsApi.getWritings();
+      setWritings(response.writings);
+      writeCache(WRITINGS_CACHE_KEY, response.writings);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch writings');
       console.error('Error fetching writings:', err);
     } finally {
       setLoading(false);
     }
-  }, [limit, category, published, sortBy, sortOrder]);
+  }, []);
 
-  const refetch = useCallback(async () => {
-    await fetchWritings(1, false);
-  }, [fetchWritings]);
-
-  const loadMore = useCallback(async () => {
-    if (hasMore && !loading) {
-      await fetchWritings(currentPage + 1, true);
-    }
-  }, [hasMore, loading, currentPage, fetchWritings]);
+  const refetch = useCallback(() => fetchWritings(true), [fetchWritings]);
 
   useEffect(() => {
-    if (autoFetch) {
-      fetchWritings(1, false);
-    }
-  }, [autoFetch, fetchWritings]);
+    fetchWritings();
+  }, [fetchWritings]);
 
-  return {
-    writings,
-    loading,
-    error,
-    total,
-    page: currentPage,
-    limit,
-    refetch,
-    loadMore,
-    hasMore,
-  };
+  return { writings, loading, error, refetch };
 };
+
+// ─── useWriting (single by slug) ────────────────────────────────────────────
 
 interface UseWritingOptions {
   slug?: string;
@@ -116,31 +104,43 @@ interface UseWritingReturn {
 
 export const useWriting = (options: UseWritingOptions = {}): UseWritingReturn => {
   const { slug, autoFetch = true } = options;
+  const cacheKey = `writing_cache_${slug}`;
 
-  const [writing, setWriting] = useState<Writing | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [writing, setWriting] = useState<Writing | null>(
+    () => (slug ? readCache<Writing>(cacheKey) : null)
+  );
+  const [loading, setLoading] = useState<boolean>(
+    () => !!slug && readCache<Writing>(cacheKey) === null
+  );
   const [error, setError] = useState<string | null>(null);
 
-  const fetchWriting = useCallback(async () => {
+  const fetchWriting = useCallback(async (force = false) => {
     if (!slug) return;
+
+    if (!force) {
+      const cached = readCache<Writing>(cacheKey);
+      if (cached) {
+        setWriting(cached);
+        setLoading(false);
+        return;
+      }
+    }
 
     try {
       setLoading(true);
       setError(null);
-
       const response = await writingsApi.getWritingBySlug(slug);
       setWriting(response);
+      writeCache(cacheKey, response);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch writing');
       console.error('Error fetching writing:', err);
     } finally {
       setLoading(false);
     }
-  }, [slug]);
+  }, [slug, cacheKey]);
 
-  const refetch = useCallback(async () => {
-    await fetchWriting();
-  }, [fetchWriting]);
+  const refetch = useCallback(() => fetchWriting(true), [fetchWriting]);
 
   useEffect(() => {
     if (autoFetch && slug) {
@@ -148,12 +148,7 @@ export const useWriting = (options: UseWritingOptions = {}): UseWritingReturn =>
     }
   }, [autoFetch, slug, fetchWriting]);
 
-  return {
-    writing,
-    loading,
-    error,
-    refetch,
-  };
+  return { writing, loading, error, refetch };
 };
 
 export default useWritings;

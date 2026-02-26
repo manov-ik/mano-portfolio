@@ -19,11 +19,11 @@ const WritingCard = ({ writing }: { writing: Writing }) => {
         </div>
 
         <Link to={`/writes/${writing.slug}`} className="flex-1 flex flex-col">
-          <h2 className="text-3xl font-bold mb-1 z-10 relative w-fit">
+          <h2 className="text-2xl font-bold mb-1 z-10 relative w-fit">
             {writing.title}
             <span className="absolute -z-10 bottom-0 left-0 h-2 w-0 bg-[#BB77FF] transition-all duration-300 group-hover:w-full"></span>
           </h2>
-          <p className="text-gray-300 text-lg flex-1 mb-2 line-clamp-3">
+          <p className="text-gray-300 text-sm flex-1 mb-2 line-clamp-3">
             {writing.excerpt}
           </p>
           <div className="text-xs text-gray-400 mt-auto">
@@ -36,12 +36,7 @@ const WritingCard = ({ writing }: { writing: Writing }) => {
 };
 
 const Writes = () => {
-  const { writings, loading, error, refetch } = useWritings({
-    limit: 12, // Show more writings per page
-    sortBy: "order", // Sort by order column from database
-    sortOrder: "asc",
-    published: true, // Only show published writings
-  });
+  const { writings, loading, error, refetch } = useWritings();
 
   if (loading) {
     return (
@@ -75,14 +70,14 @@ const Writes = () => {
 
   return (
     <div className="min-h-screen pt-24">
-      <div className="flex justify-center mb-8">
+      <div className="flex justify-center mb-4">
         <p className="font-mono text-3xl font-bold text-[#1A191D] z-20 bg-white p-2 transition-all duration-300 hover:bg-[#BB77FF] relative group">
           My Writings
         </p>
       </div>
 
       <div className="w-[90%] sm:w-[80%] mx-auto">
-        <p className="text-center text-white font-mono text-lg mb-8">
+        <p className="text-center text-white font-mono text-base mb-8 opacity-60 w-[80%] mx-auto">
           Thoughts, tutorials, and insights on technology, programming, and
           design
         </p>
@@ -97,7 +92,7 @@ const Writes = () => {
         ) : (
           <div className="flex flex-wrap justify-center">
             {writings.map((writing) => (
-              <WritingCard key={writing.id} writing={writing} />
+              <WritingCard key={writing.slug} writing={writing} />
             ))}
           </div>
         )}

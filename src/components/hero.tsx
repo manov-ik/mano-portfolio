@@ -1,5 +1,5 @@
 import { Typewriter } from "react-simple-typewriter";
-import manoS from "../assets/mano-square-c.png";
+import manoS from "../assets/mano3.png";
 
 function HeroSection() {
   return (
@@ -44,14 +44,16 @@ function HeroSection() {
             </p>
           </div>
         </section>
-        <div className="flex justify-center items-center ">
-          {/* <img src={manoF} alt="img" className="w-96 lg:block hidden " /> */}
-          <img
-            src={manoS}
-            alt="img"
-            className="w-60 mt-24 xl:mt-0 bg-[#BB77FF] p-2 rounded-full xl:w-128 "
-          />
-        </div>
+        <div className="flex justify-center items-center">
+   <div className="flex justify-center items-center ">
+    {/* <img src={manoF} alt="img" className="w-96 lg:block hidden " /> */}
+      <img
+      src={manoS}
+      alt="img"
+      className="w-60 mt-24 xl:mt-0 bg-[#BB77FF] p-2 rounded-full xl:w-128"
+      />
+</div>
+</div>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import ManoResume from "../assets/manovikram_k_resume.pdf";
 
 function NavBar() {
@@ -11,9 +12,25 @@ function NavBar() {
     document.body.style.overflow = menuOpen ? "auto" : "hidden";
   };
 
+  const navigate = useNavigate();
+
   const closeMenu = () => {
     setMenuOpen(false);
     document.body.style.overflow = "auto";
+  };
+
+  const handleContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    closeMenu();
+    // If already on home, just scroll. Otherwise navigate then scroll.
+    if (window.location.pathname === "/") {
+      document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById("connect")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
   };
 
   const menuVariants = {
@@ -64,12 +81,18 @@ function NavBar() {
         <NavLink href="/projects" onClick={closeMenu}>
           Project
         </NavLink>
-        <NavLink href="/#connect" onClick={closeMenu}>
-          Contact
-        </NavLink>
         <NavLink href="/writes" onClick={closeMenu}>
           Writes
         </NavLink>
+        <motion.a
+          href="/#connect"
+          className="text-sm font-bold hover:bg-[#BB77FF] p-2 transition-all duration-300"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleContact}
+        >
+          Contact
+        </motion.a>
         <NavLink href="/more" onClick={closeMenu}>
           More
         </NavLink>
@@ -123,19 +146,22 @@ function NavBar() {
               Project
             </MobileLink>
             <MobileLink
-              href="/#connect"
-              onClick={closeMenu}
-              variants={linkVariants}
-            >
-              Contact
-            </MobileLink>
-            <MobileLink
-              href="/Writes"
+              href="/writes"
               onClick={closeMenu}
               variants={linkVariants}
             >
               Writes
             </MobileLink>
+            <motion.a
+              href="/#connect"
+              onClick={handleContact}
+              className="hover:text-[#BB77FF] transition-all text-lg"
+              variants={linkVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Contact
+            </motion.a>
             <MobileLink
               href="/more"
               onClick={closeMenu}
