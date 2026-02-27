@@ -29,7 +29,7 @@ function HeroSection() {
                   "ML Engineer",
                   "Software Developer",
                   "AI Enthusiast",
-                  "Graphic Desginer"
+                  "Graphic Desginer",
                 ]}
                 loop={true}
                 cursor
@@ -45,15 +45,15 @@ function HeroSection() {
           </div>
         </section>
         <div className="flex justify-center items-center">
-   <div className="flex justify-center items-center ">
-    {/* <img src={manoF} alt="img" className="w-96 lg:block hidden " /> */}
-      <img
-      src={manoS}
-      alt="img"
-      className="w-60 mt-24 xl:mt-0 bg-[#BB77FF] p-2 rounded-full xl:w-128"
-      />
-</div>
-</div>
+          <div className="flex justify-center items-center ">
+            {/* <img src={manoF} alt="img" className="w-96 lg:block hidden " /> */}
+            <img
+              src={manoS}
+              alt="img"
+              className="w-60 mt-24 xl:mt-0 bg-[#BB77FF] p-2 rounded-full xl:w-128 "
+            />
+          </div>
+        </div>
       </div>
     </>
   );

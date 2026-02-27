@@ -1,9 +1,8 @@
 export default function Fotter() {
   return (
-    <footer className="mt-10 bg-[#232328] px-6 py-4 flex flex-col items-center">
-      
+    <footer className="mt-10 bg-[#232328] px-6 py-4 flex flex-col items-center text-center">
       <p className="font-mono text-xs text-gray-500">
-       @manov_ik © {new Date().getFullYear()} · Designed &amp; developed by{" "}
+        @manov_ik © {new Date().getFullYear()} · Designed &amp; developed by{" "}
         <a
           href="https://digiclickstudios.com/"
           target="_blank"

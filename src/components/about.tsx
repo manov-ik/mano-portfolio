@@ -3,10 +3,28 @@ import { useEffect, useRef, useMemo } from "react";
 import Matter from "matter-js";
 
 const SKILLS = [
-  "Python", "Machine Learning", "Deep Learning", "TensorFlow",
-  "FastAPI", "Django", "React", "Java", "Go", "C",
-  "PostgreSQL", "MySQL", "Git", "GitHub", "Docker",
-  "Power BI", "Blender", "Figma", "Photoshop", "Illustrator",
+  "Python",
+  "Machine Learning",
+  "Deep Learning",
+  "TensorFlow",
+  "FastAPI",
+  "Django",
+  "React",
+  "Java",
+  "Go",
+  "C",
+  "PostgreSQL",
+  "Illustrator",
+  "MySQL",
+  "Git",
+  "GitHub",
+  "Docker",
+  "Power BI",
+  "Blender",
+  "Adobe",
+  "Affinity",
+  "Figma",
+  "Photoshop",
 ];
 
 // ── Physics skill cloud ───────────────────────────────────────────────────────
@@ -17,7 +35,7 @@ function PhysicsSkills() {
   const pillData = useMemo(() => {
     return SKILLS.map((skill) => {
       // Random scale between 0.75 and 1.35
-      const scale = 0.75 + Math.random() * 0.6; 
+      const scale = 0.75 + Math.random() * 0.6;
       const width = Math.round((skill.length * 10 + 40) * scale);
       const height = Math.round(44 * scale);
       const fontSize = (0.88 * scale).toFixed(2);
@@ -30,7 +48,7 @@ function PhysicsSkills() {
     if (!el) return;
 
     const W = el.clientWidth;
-    const H = 450; 
+    const H = 450;
     const cx = W / 2;
     const cy = H / 2;
 
@@ -41,16 +59,16 @@ function PhysicsSkills() {
     const world = engine.world;
 
     // Solid boundary walls perfectly aligned to the container edges
-    const wallOpts = { 
-      isStatic: true, 
+    const wallOpts = {
+      isStatic: true,
       restitution: 0.8, // Make walls bouncy
-      render: { fillStyle: "transparent" } 
+      render: { fillStyle: "transparent" },
     };
     Composite.add(world, [
-      Bodies.rectangle(cx, -25, W, 50, wallOpts),          // Top
-      Bodies.rectangle(cx, H + 25, W, 50, wallOpts),       // Bottom
-      Bodies.rectangle(-25, cy, 50, H, wallOpts),          // Left
-      Bodies.rectangle(W + 25, cy, 50, H, wallOpts),       // Right
+      Bodies.rectangle(cx, -25, W, 50, wallOpts), // Top
+      Bodies.rectangle(cx, H + 25, W, 50, wallOpts), // Bottom
+      Bodies.rectangle(-25, cy, 50, H, wallOpts), // Left
+      Bodies.rectangle(W + 25, cy, 50, H, wallOpts), // Right
     ]);
 
     // Create solid pills
@@ -59,7 +77,7 @@ function PhysicsSkills() {
       // Start them somewhat centralized to trigger a cool initial "explosion" break
       const x = cx + (Math.random() - 0.5) * 100;
       const y = cy + (Math.random() - 0.5) * 100;
-      
+
       const body = Bodies.rectangle(x, y, data.width, data.height, {
         isSensor: false, // Solid object! They will now hit walls and each other
         frictionAir: 0.015, // Very low air resistance so they keep moving
@@ -69,26 +87,30 @@ function PhysicsSkills() {
         render: { fillStyle: "transparent" },
         label: data.skill,
       });
-      
+
       // Give them a random initial velocity
       Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 6,
         y: (Math.random() - 0.5) * 6,
       });
-      
+
       return body;
     });
-    
+
     Composite.add(world, bodies);
 
     // Track mouse for dodge effect
-    let mouseX = -1000, mouseY = -1000;
+    let mouseX = -1000,
+      mouseY = -1000;
     const onMouseMove = (e: MouseEvent) => {
       const rect = el.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
     };
-    const onMouseLeave = () => { mouseX = -1000; mouseY = -1000; };
+    const onMouseLeave = () => {
+      mouseX = -1000;
+      mouseY = -1000;
+    };
     el.addEventListener("mousemove", onMouseMove);
     el.addEventListener("mouseleave", onMouseLeave);
 
@@ -100,10 +122,12 @@ function PhysicsSkills() {
         // Continuous wandering force so they never stop bouncing around
         // Force is scaled by body mass so bigger pills require more force to move
         const wanderX = Math.sin(tick * 0.02 + phases[i]) * 0.00015 * body.mass;
-        const wanderY = Math.cos(tick * 0.025 + phases[i]) * 0.00015 * body.mass;
+        const wanderY =
+          Math.cos(tick * 0.025 + phases[i]) * 0.00015 * body.mass;
 
         // Subtle mouse dodge
-        let mouseDodgX = 0, mouseDodgY = 0;
+        let mouseDodgX = 0,
+          mouseDodgY = 0;
         const mdx = body.position.x - mouseX;
         const mdy = body.position.y - mouseY;
         const mouseDistSq = mdx * mdx + mdy * mdy;
@@ -162,10 +186,10 @@ function PhysicsSkills() {
   return (
     <div
       ref={containerRef}
-      style={{ 
-        position: "relative", 
-        width: "100%", 
-        height: 450, 
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 450,
         overflow: "hidden",
       }}
     >
@@ -176,7 +200,8 @@ function PhysicsSkills() {
             className="phys-pill group"
             style={{
               position: "absolute",
-              top: 0, left: 0,
+              top: 0,
+              left: 0,
               width: data.width,
               height: data.height,
               display: "inline-flex",
@@ -194,8 +219,9 @@ function PhysicsSkills() {
               userSelect: "none",
               willChange: "transform",
               backdropFilter: "blur(6px)",
-              transition: "color 0.3s ease, border-color 0.3s ease, background 0.3s ease",
-              cursor: "default"
+              transition:
+                "color 0.3s ease, border-color 0.3s ease, background 0.3s ease",
+              cursor: "default",
             }}
             onMouseEnter={(e) => {
               const t = e.target as HTMLElement;
@@ -238,25 +264,48 @@ function About() {
         </div>
         <div className="m-auto lg:w-[60%] lg:mr-0">
           <p className="text-justify text-white text-lg lg:text-xl">
-            I'm a engineering student who is interested in technology and
+            {/* I'm a engineering student who is interested in technology and
             innovation. I enjoy designing and venturing into the limitless
-            opportunities of machine learning and engineering.
+            opportunities of machine learning and engineering. */}
+            I’m Manovikram K, a final year engineering student focused on
+            building optimal and scalable systems.
           </p>
           <br className="hidden lg:block" />
           <br />
           <p className="text-justify text-white text-lg lg:text-xl">
-            With ML engineering, product development, and software solution
+            {/* With ML engineering, product development, and software solution
             expertise, I aim to develop meaningful, real-world applications.
-            Whether developing AI applications, creating product animations,
-            or propelling digital transformation, I'm always excited to learn,
-            test, and innovate.
+            Whether developing AI applications, creating product animations, or
+            propelling digital transformation, I'm always excited to learn,
+            test, and innovate. */}
+            As a designer and developer, I aim to develop solutions that are
+            clean, minimal and highly functional. My work involves full-stack
+            development and Machine Learning to develop structured, end-to-end
+            applications that go from idea to deployment.
           </p>
+          <br />
+          <p className="justify-between flex text-white opacity-50 text-xs lg:text-xs">
+            <p>CREATE;DEVELOP;DEPLOY</p> <p>#createsomethingdifferent</p>
+          </p>
+
+          {/* I’m Manovikram K, a final year engineering student focused on building optimal and scalable systems.
+
+As a designer and developer, I aim to develop solutions that are clean, minimal and highly functional. My work involves full-stack development and Machine Learning to develop structured, end-to-end applications that go from idea to deployment.
+
+Previously, I was the Vice President at DEVS REC, where I was involved in developing the technical learning and problem-solving culture among students.
+
+I enjoy building systems from scratch, tackling complex challenges, and pushing concepts into production-ready solutions. */}
         </div>
       </div>
 
-      <div >
-        <p className="text-center text-white text-lg  opacity-50 lg:text-xl m-10 lg:mt-24"> Skills and Tools.</p>
+      <div>
+        <p className="text-center text-white text-lg  opacity-50 lg:text-xl m-10 lg:mt-24">
+          Skills and Tools.
+        </p>
         <PhysicsSkills />
+        <p className="text-center text-white text-xs opacity-40 lg:text-sm mt-10">
+          * Sizes are random
+        </p>
       </div>
     </div>
   );
