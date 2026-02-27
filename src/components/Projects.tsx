@@ -8,32 +8,33 @@ const ProjectCard = ({ project }: { project: Project }) => (
   <div className="w-full md:w-1/2 lg:w-1/3 p-4">
     <div className="rounded-2xl font-mono text-white bg-[#2323288d] border-1 border-[#484851] hover:bg-[#232328] transition-all duration-300 hover:backdrop-blur-xl h-full flex flex-col group overflow-hidden">
       {/* Thumbnail */}
-      <div className="w-full h-44 overflow-hidden bg-[#1a1a1f]">
-        {project.image_url ? (
-          <img
-            src={project.image_url}
-            alt={project.title}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm">
-            No image
-          </div>
-        )}
-      </div>
-
-      <div className="p-6 flex flex-col flex-1">
-        {/* Meta row */}
-        <div className="flex justify-between items-center mb-3">
-          <span className="text-xs text-[#BB77FF] bg-[#BB77FF20] px-2 py-1 rounded-full">
-            {project.year}
-          </span>
-          <span className="text-xs text-gray-400">{project.tech_stack[0]}</span>
+      <Link to={`/projects/${project.slug}`} className="flex-1 flex flex-col">
+        <div className="w-full h-44 overflow-hidden bg-[#1a1a1f]">
+          {project.image_url ? (
+            <img
+              src={project.image_url}
+              alt={project.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-600 text-sm">
+              No image
+            </div>
+          )}
         </div>
 
-        <Link to={`/projects/${project.slug}`} className="flex-1 flex flex-col">
+        <div className="p-6 flex flex-col flex-1">
+          {/* Meta row */}
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-xs text-[#BB77FF] bg-[#BB77FF20] px-2 py-1 rounded-full">
+              {project.year}
+            </span>
+            <span className="text-xs text-gray-400">
+              {project.tech_stack[0]}
+            </span>
+          </div>
           {/* Title with underline animation */}
           <h2 className="text-2xl font-bold mb-2 z-10 relative w-fit">
             {project.title}
@@ -60,17 +61,30 @@ const ProjectCard = ({ project }: { project: Project }) => (
               </span>
             )}
           </div>
-        </Link>
-      </div>
+        </div>
+      </Link>
     </div>
   </div>
 );
 
 // ── Design work card ───────────────────────────────────────────────────────────
-const WorkCard = ({ imgSrc, link, label }: { imgSrc: string; link: string; label: string }) => (
+const WorkCard = ({
+  imgSrc,
+  link,
+  label,
+}: {
+  imgSrc: string;
+  link: string;
+  label: string;
+}) => (
   <div className="w-1/2 md:w-1/3 xl:w-1/4 p-2">
     <div className="rounded-2xl font-mono text-white bg-[#2323288d] border-1 border-[#484851] hover:bg-[#232328] transition-all duration-300 hover:backdrop-blur-xl h-32 md:h-48 xl:min-h-54 overflow-hidden group">
-      <a href={link || undefined} target="_blank" rel="noreferrer" className="block w-full h-full">
+      <a
+        href={link || undefined}
+        target="_blank"
+        rel="noreferrer"
+        className="block w-full h-full"
+      >
         <img
           src={imgSrc}
           alt={label}
@@ -114,7 +128,9 @@ function Projects() {
         {error && !loading && (
           <div className="flex items-center justify-center py-20">
             <div className="text-center text-white font-mono">
-              <h2 className="text-2xl font-bold mb-3 text-red-400">Error Loading Projects</h2>
+              <h2 className="text-2xl font-bold mb-3 text-red-400">
+                Error Loading Projects
+              </h2>
               <p className="text-gray-300 mb-6">{error}</p>
               <button
                 onClick={refetch}
@@ -130,7 +146,9 @@ function Projects() {
         {!loading && !error && (
           <div className="w-[90%] sm:w-[85%] mx-auto flex flex-wrap justify-center">
             {projects.length === 0 ? (
-              <p className="text-gray-400 font-mono text-lg py-16">No projects yet. Check back soon!</p>
+              <p className="text-gray-400 font-mono text-lg py-16">
+                No projects yet. Check back soon!
+              </p>
             ) : (
               projects.map((project) => (
                 <ProjectCard key={project.slug} project={project} />
@@ -146,11 +164,17 @@ function Projects() {
           Design Works
         </p>
         <p className="text-center text-white font-mono text-base mb-8 opacity-60 w-[80%] mx-auto">
-          A collection of design projects I've worked on, including UI/UX design, branding, and more.
+          A collection of design projects I've worked on, including UI/UX
+          design, branding, and more.
         </p>
         <div className="flex flex-wrap px-2 justify-center mt-4">
           {DESIGN_WORKS.map((work) => (
-            <WorkCard key={work.label} imgSrc={work.imgSrc} link={work.link} label={work.label}  />
+            <WorkCard
+              key={work.label}
+              imgSrc={work.imgSrc}
+              link={work.link}
+              label={work.label}
+            />
           ))}
         </div>
       </div>

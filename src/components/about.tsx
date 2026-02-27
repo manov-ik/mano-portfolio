@@ -285,7 +285,7 @@ function About() {
           </p>
           <br />
           <p className="justify-between flex text-white opacity-50 text-xs lg:text-xs">
-            <p>CREATE;DEVELOP;DEPLOY</p> <p>#createsomethingdifferent</p>
+            <p>CREATE.DEVELOP.DEPLOY.</p> <p>#createsomethingdifferent</p>
           </p>
 
           {/* I’m Manovikram K, a final year engineering student focused on building optimal and scalable systems.

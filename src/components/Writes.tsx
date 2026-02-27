@@ -4,7 +4,7 @@ import type { Writing } from "../services/writingsApi";
 
 const WritingCard = ({ writing }: { writing: Writing }) => {
   return (
-    <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+    <div className="w-full md:w-1/2 lg:w-1/3 p-2 px-0 md:p-2 ">
       <div className="rounded-2xl p-6 font-mono text-white bg-[#2323288d] border-1 border-[#484851] hover:bg-[#232328] transition-all duration-300 hover:backdrop-blur-xl h-full flex flex-col group">
         <div className="flex justify-between items-start mb-2">
           {writing.category && (

@@ -5,7 +5,10 @@ import LinkSVG from "../assets/Link.svg";
 
 const ProjectDetailPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { project, loading, error, refetch } = useProject({ slug, autoFetch: !!slug });
+  const { project, loading, error, refetch } = useProject({
+    slug,
+    autoFetch: !!slug,
+  });
 
   // ── Loading ────────────────────────────────────────────────────────────────
   if (loading) {
@@ -24,7 +27,9 @@ const ProjectDetailPage = () => {
     return (
       <div className="min-h-screen pt-24 flex items-center justify-center">
         <div className="text-center text-white font-mono">
-          <h1 className="text-2xl font-bold mb-4 text-red-400">Error Loading Project</h1>
+          <h1 className="text-2xl font-bold mb-4 text-red-400">
+            Error Loading Project
+          </h1>
           <p className="text-base mb-6 text-gray-300">{error}</p>
           <div className="flex gap-4 justify-center">
             <button
@@ -51,7 +56,9 @@ const ProjectDetailPage = () => {
       <div className="min-h-screen pt-24 flex items-center justify-center">
         <div className="text-center text-white font-mono">
           <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-          <p className="text-base mb-6 text-gray-300">The project you're looking for doesn't exist.</p>
+          <p className="text-base mb-6 text-gray-300">
+            The project you're looking for doesn't exist.
+          </p>
           <Link
             to="/projects"
             className="inline-block bg-[#BB77FF] text-white px-6 py-3 rounded-lg hover:bg-[#BB77FF]/80 transition-colors duration-300"
@@ -64,15 +71,25 @@ const ProjectDetailPage = () => {
   }
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-0">
       {/* ── Back nav ────────────────────────────────────────────── */}
       <div className="w-[90%] sm:w-[80%] mx-auto mb-6">
         <Link
           to="/projects"
           className="inline-flex items-center text-sm text-[#BB77FF] hover:text-white transition-colors duration-300 font-mono"
         >
-          <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          <svg
+            className="w-4 h-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
           Back to Projects
         </Link>
@@ -85,6 +102,7 @@ const ProjectDetailPage = () => {
             <img
               src={project.image_url}
               alt={project.title}
+              draggable={false}
               loading="lazy"
               decoding="async"
               className="w-full h-full object-cover"
