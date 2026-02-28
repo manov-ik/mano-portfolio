@@ -284,8 +284,11 @@ function About() {
             applications that go from idea to deployment.
           </p>
           <br />
-          <p className="justify-between flex text-white opacity-50 text-xs lg:text-xs">
-            <p>CREATE.DEVELOP.DEPLOY.</p> <p>#createsomethingdifferent</p>
+          <p className="flex flex-col sm:flex-row sm:justify-between text-white opacity-50 text-xs lg:text-sm">
+            <p className="w-fit m-auto sm:m-0 my-2 ">CREATE.DEVELOP.DEPLOY.</p>{" "}
+            <p className="w-fit m-auto sm:m-0 my-2 ">
+              #createsomethingdifferent
+            </p>
           </p>
 
           {/* I’m Manovikram K, a final year engineering student focused on building optimal and scalable systems.
@@ -299,7 +302,7 @@ I enjoy building systems from scratch, tackling complex challenges, and pushing 
       </div>
 
       <div>
-        <p className="text-center text-white text-lg  opacity-50 lg:text-xl m-10 lg:mt-24">
+        <p className="text-center text-white text-lg  opacity-50 lg:text-xl m-4 lg:mt-24">
           Skills and Tools.
         </p>
         <PhysicsSkills />

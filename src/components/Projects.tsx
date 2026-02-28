@@ -150,9 +150,11 @@ function Projects() {
                 No projects yet. Check back soon!
               </p>
             ) : (
-              projects.map((project) => (
-                <ProjectCard key={project.slug} project={project} />
-              ))
+              projects
+                .sort((a, b) => (b.order_index ?? 0) - (a.order_index ?? 0))
+                .map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))
             )}
           </div>
         )}
